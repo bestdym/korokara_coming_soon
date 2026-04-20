@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Coming Soon</title>
+
+    <!-- Font elegan -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            /* 🌸 background soft */
+            background: linear-gradient(135deg, #f8f1e7, #f3d6dc);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            z-index: 2;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: #5a2a2a;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        h1:hover {
+            transform: scale(1.05);
+            color: #b23a48;
+        }
+
+        p {
+            font-size: 18px;
+            color: #6b5b5b;
+        }
+
+        #countdown {
+            font-size: 26px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #b23a48;
+        }
+
+        /* 🌸 bunga lembut */
+        .flower {
+            position: fixed;
+            top: -50px;
+            font-size: 16px;
+            opacity: 0.5;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Coming Soon</h1>
+        <p>Website sedang dalam pengembangan</p>
+        <div id="countdown"></div>
+    </div>
+
+    <script>
+        // countdown
+        const target = new Date("Apr 27, 2026 10:00:00").getTime();
+        const countdown = document.getElementById("countdown");
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = target - now;
+
+            const hari = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const jam = Math.floor((distance / (1000 * 60 * 60)) % 24);
+            const menit = Math.floor((distance / (1000 * 60)) % 60);
+            const detik = Math.floor((distance / 1000) % 60);
+
+            countdown.innerHTML =
+                hari + " Hari " +
+                jam + " Jam " +
+                menit + " Menit " +
+                detik + " Detik";
+        }, 1000);
+
+        // 🌸 bunga minimalis (sesuai tema)
+        const icons = ["🌸", "🌷"];
+
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.classList.add("flower");
+
+            flower.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.animationDuration = (8 + Math.random() * 6) + "s";
+
+            document.body.appendChild(flower);
+
+            setTimeout(() => {
+                flower.remove();
+            }, 14000);
+        }
+
+        // lebih jarang → elegan
+        setInterval(createFlower, 1800);
+    </script>
+
+</body>
+</html>
